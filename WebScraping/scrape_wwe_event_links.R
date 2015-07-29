@@ -1,4 +1,6 @@
 library(dplyr)
+library(RCurl) 
+library(XML)
 wwe.pages <- read.csv('data/year_urls.tsv',sep='\t', header=T)
 
 get.event.urls <- function(x){
