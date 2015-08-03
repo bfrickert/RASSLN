@@ -53,12 +53,6 @@ get.bouts <- function(url){
     message(cond)
     return(NA)
   },
-#   warning=function(cond){
-#     message("things warninged!")
-#     message(url)
-#     message(cond)
-#     return(NULL)
-#   },
   finally={
     message(paste("processed: ",url))
   })
@@ -66,10 +60,7 @@ get.bouts <- function(url){
   }
 
 
-#bouts <- lapply(filter(events, url != '/index.php?befehl=shows&show=68318')$url, FUN=get.bouts)
 lapply(filter(events, url != '/index.php?befehl=shows&show=68318')$url, FUN=get.bouts)
-#df <- ldply(bouts, data.frame)
 
-#write.table(df, 'data/event.bouts.tsv', sep='\t', row.names=F)
 
 
