@@ -5,7 +5,7 @@ library(dplyr)
 
 
 locations <- read.table('data/event.locations.tsv',header=T, sep='\t', stringsAsFactors=F)
-events <- read.table('data/event.links2007.tsv',header=T, sep='\t', stringsAsFactors=F)
+events <- read.table('data/event.links.tsv',header=T, sep='\t', stringsAsFactors=F)
 
 get.nums <- function(l) {
   r <- "wrestler=([\\d]+)"
@@ -44,7 +44,7 @@ get.bouts <- function(url){
   df$id <- id
   names(df) <- c('winners','losers','id')
   #return(filter(df,winners!='' | losers!=''))
-  write.table(filter(df,winners!='' | losers!=''),'data/bouts2007.tsv',append=T, row.names=F,col.names=F, sep="\t",quote=F)
+  write.table(filter(df,winners!='' | losers!=''),'data/bouts.tsv',append=T, row.names=F,col.names=F, sep="\t",quote=F)
 },
   
   error = function(cond){

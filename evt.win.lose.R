@@ -33,3 +33,14 @@ evt.win.lose <- filter(evt.win.lose, !is.na(loser.id))
 
 write.table(evt.win.lose, 'data/evt.win.lose.csv', sep=",", col.names=T, row.names=F)
 
+evt.win.lose <- read.csv('data/evt.win.lose.csv')
+evt.locations <- read.table('data/event.locations.tsv',sep='\t',header=T,stringsAsFactors = F)
+wrestlers <- read.table('data/bio.tsv',sep='\t',header = F, stringsAsFactors = F)
+names(wrestlers) <- c('wrestler.id', 'name', 'wgt','hgt','trademark.moves','finishers')
+full <- merge(evt.win.lose, wrestlers, by.x='winner.id', by.y='wrestler.id')
+full <- merge(full, wrestlers, by.x='loser.id', by.y='wrestler.id')
+names(full) <- c('winner.id','loser.id', 'evt.id','date', 'winner.name','winner.wgt','winner.hgt',
+                 'winner.trademark.moves','winner.finishers','loser.name','loser.wgt','loser.hgt',
+                 'loser.trademark.moves', 'loser.finishers')
+
+write.table(full, 'data/full.tsv', row.names = F, sep='\t', col.names = T)

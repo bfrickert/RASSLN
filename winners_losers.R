@@ -25,7 +25,7 @@ get.losers <- function(win.id){
       df <- ldply(apply(my.losers, 1, function(x) flatn.losers(x[2],x[3])),data.frame)
       df<-cbind(win.id, df)
       names(df) <- n
-      write.table(df, 'data/flatnd.tsv', sep='\t', append=T, col.names=F)
+      write.table(df, 'data/winners_losers.tsv', sep='\t', append=T, col.names=F)
     },
     
     error = function(cond){
